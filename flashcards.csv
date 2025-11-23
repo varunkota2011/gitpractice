@@ -1,0 +1,63 @@
+What is a lambda function in Python?,"It is a small, anonymous function defined with the `lambda` keyword that can have any number of arguments but only one expression."
+What is the general syntax for a Python lambda function?,The syntax is `lambda arguments: expression`.
+A key limitation of lambda functions is that they can have any number of arguments but only _____ expression.,one
+Why are lambda functions also known as anonymous functions?,"Because they are defined without a name, unless they are assigned to a variable."
+How is the result of a lambda function's expression returned?,"The expression is evaluated and its result is returned implicitly, without needing an explicit `return` keyword."
+What is a primary difference between a `def` function and a `lambda` function regarding statements?,"A `def` function can contain multiple statements and expressions, while a `lambda` function is restricted to a single expression."
+"What programming paradigm treats functions as first-class citizens, allowing them to be passed as arguments and returned from other functions?",Functional programming.
+"In functional programming, what does it mean for functions to be 'first-class citizens'?","It means they can be bound to names, passed as arguments, and returned from other functions, just like any other data type."
+When is it generally considered bad practice to use a lambda function?,"When the logic is complex, requiring multiple statements, loops, or conditional blocks that would be clearer in a regular `def` function."
+What should you do if you find yourself using the same lambda expression in multiple places?,Convert it to a named function using `def` to improve maintainability and follow the DRY (Don't Repeat Yourself) principle.
+How can using a lambda function impact debugging?,"They can be challenging to debug because they appear as `<lambda>` in stack traces, making error messages less clear."
+What is a more 'Pythonic' alternative to using `map()` with a lambda function for simple transformations?,"A list comprehension, such as `[x**2 for x in numbers]`."
+What is a more 'Pythonic' alternative to using `filter()` with a lambda function?,"A list comprehension with a conditional clause, such as `[x for x in numbers if x % 2 == 0]`."
+What is the purpose of the built-in `map()` function in Python?,It applies a given function to each item of an iterable and returns a map object (an iterator) with the results.
+What is the syntax for the `map()` function?,"The syntax is `map(function, iterable)`."
+"Code: `numbers = [1, 2, 3]`
+`list(map(lambda x: x * 2, numbers))`
+What is the output?","The output is `[2, 4, 6]`."
+What is the purpose of the built-in `filter()` function in Python?,It constructs an iterator from elements of an iterable for which a function returns true.
+What is the syntax for the `filter()` function?,"The syntax is `filter(function, iterable)`."
+"Code: `numbers = [1, 2, 3, 4]`
+`list(filter(lambda x: x % 2 == 0, numbers))`
+What is the output?","The output is `[2, 4]`."
+From which module must the `reduce()` function be imported in Python?,It must be imported from the `functools` module.
+How does the `reduce()` function work?,"It applies a function of two arguments cumulatively to the items of an iterable, from left to right, to reduce the iterable to a single value."
+"Code: `from functools import reduce`
+`numbers = [1, 2, 3, 4]`
+`reduce(lambda x, y: x + y, numbers)`
+What is the output?",The output is `10`.
+Functions that can take other functions as arguments or return them as results are known as _____ functions.,higher-order
+"Why are `map()`, `filter()`, and `sorted()` considered higher-order functions?","Because they accept another function as one of their arguments (e.g., the transformation function for `map` or the `key` function for `sorted`)."
+"When sorting a list of dictionaries, how can a lambda function be used with the `sorted()` function?",It can be passed as the `key` argument to specify which dictionary value to use for the comparison.
+"Code: `students = [{'name': 'Bob', 'score': 80}, {'name': 'Alice', 'score': 90}]`
+`sorted(students, key=lambda x: x['score'])`
+What is the output?","The output is `[{'name': 'Bob', 'score': 80}, {'name': 'Alice', 'score': 90}]`."
+How would you sort a list of dictionaries by `age` and then by `name` if the ages are the same?,"By providing a tuple in the lambda key: `sorted(dic, key=lambda x: (x['age'], x['name']))`."
+"While assigning a lambda to a variable is possible (e.g., `add = lambda x, y: x + y`), why is it often discouraged?","It is often better to define a regular function with `def` for clarity, readability, and better debugging information."
+What is the 'late binding closure trap' often encountered when creating lambdas in a loop?,"All created lambdas will refer to the final value of the loop variable, not the value it had when the lambda was created."
+"Code: `funcs = [lambda: print(i) for i in range(3)]`
+`for f in funcs: f()`
+What is the output and why?","The output is `2`, `2`, `2`, because `i` is looked up when the functions are called, by which time the loop has finished and `i` is 2."
+How can you solve the 'late binding closure trap' when creating lambdas in a loop?,"By using a default argument to capture the loop variable's value at definition time, like `lambda i=i: print(i)`."
+A function that has no side effects (like modifying a global variable or performing I/O) and always returns the same result for the same arguments is called a _____ function.,pure
+The property that an expression can be replaced with its corresponding value without changing the program's behavior is known as _____.,referential transparency
+Why is it generally better to use a `def` function for complex sorting keys instead of a complex lambda?,"A named function improves clarity and readability, making the sorting logic easier to understand."
+In what programming context are lambdas useful for defining simple callback functions without cluttering the namespace?,"In event-driven programming, such as GUI applications (e.g., with tkinter)."
+"Code: `button = tk.Button(root, text=""Click"", command=lambda: print(""Clicked!""))`
+What is the role of the lambda function here?","It serves as a simple, inline callback function that is executed when the button is clicked."
+A function that takes a number `n` and returns another function that multiplies its argument by `n` is known as a _____.,function factory
+"Code: `def make_multiplier(n): return lambda x: x * n`
+What does `make_multiplier(3)` return?",It returns a lambda function that takes one argument `x` and returns `x * 3`.
+Can a lambda function contain conditional logic?,"Yes, but only in the form of a single conditional expression (ternary operator), such as `x if x > y else y`."
+How do you provide a default value for a parameter in a lambda function?,"In the same way as a regular function, for example: `lambda x, y=1: x / y`."
+What is the performance difference between a lambda function and an equivalent regular function?,"The performance difference is typically negligible, so the choice should be based on readability and maintainability."
+"What does a lambda function return if it is printed without being called, as in `print(lambda x: x)`?","It returns the function object itself, showing its type and memory address."
+"In Pandas, which method is used with a lambda function to apply an operation to every element in a Series?",The `.apply()` method.
+"Code: `df['name'].apply(lambda x: x.lower())`
+What does this operation do?",It converts every string in the 'name' column of the DataFrame `df` to lowercase.
+"Unlike a `def` function, a `lambda` function is a(n) _____ rather than a statement.",expression
+"In functional languages, iteration (looping) is usually accomplished via what technique?",Recursion.
+"What type of recursion can be optimized by a compiler into the same code used for iteration, avoiding stack space consumption?",Tail recursion.
+What does 'strict (eager) evaluation' mean in the context of function arguments?,It means the function arguments are always fully evaluated before the function is called.
+What does 'non-strict (lazy) evaluation' mean in the context of function arguments?,It means function arguments are not evaluated unless their values are required to evaluate the function call itself.
